@@ -1,0 +1,75 @@
+package utils.cli;
+
+
+import org.apache.commons.cli.*;
+
+public class CLIParser {
+    private Options options;
+    private CommandLineParser parser = new PosixParser();
+    private CommandLine line;
+
+    public CLIParser() {
+        options = new Options();
+
+        Option leftOperand = Option.builder("h")
+                .required(true)
+                .longOpt("height")
+                .hasArg()
+                .desc("Number of field's rows")
+                .build();
+
+        Option rightOperand = Option.builder("w")
+                .required(true)
+                .longOpt("width")
+                .hasArg()
+                .desc("Number of field's columns")
+                .build();
+
+        Option operation = Option.builder("f")
+                .required(true)
+                .longOpt("factor")
+                .hasArg()
+                .desc("Fill factor. Double number, between 0 and 1")
+                .build();
+
+        Option help = Option.builder("?")
+                .required(false)
+                .longOpt("help")
+                .desc("If you need the help")
+                .build();
+
+        options.addOption(leftOperand);
+        options.addOption(rightOperand);
+        options.addOption(operation);
+        options.addOption(help);
+    }
+
+    public IncomeData parse(String[] args) throws ParseException {
+        if (args.length == 0) {
+            printHelp();
+        }
+        line = parser.parse(options, args);
+        int height =  Integer.parseInt(line.getOptionValue("height"));
+        int width = Integer.parseInt(line.getOptionValue("width"));
+        double fillFactor = Double.parseDouble(line.getOptionValue("factor"));
+
+        if (!checkIncomeArgs(height, width, fillFactor)) {
+            printHelp();
+        }
+        return new IncomeData(height, width, fillFactor);
+    }
+
+    private boolean checkIncomeArgs(int height, int width, double fillFactor) {
+        if ((height > 0 && width > 0 && (0.0 <= fillFactor && fillFactor <= 1.0))) {
+            return true;
+        }
+        return false;
+    }
+
+    public void printHelp() {
+        HelpFormatter helpFormatter = new HelpFormatter();
+        String header = "Something wrong with your input, check input values:\n\n";
+        String footer = "";
+        helpFormatter.printHelp("Help:", header, options, footer, true);
+    }
+}

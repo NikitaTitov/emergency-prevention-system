@@ -2,12 +2,11 @@ package utils;
 
 
 public class RiskDetector {
-    private static double riskTable[] = {2, 4, 7, 13};
 
-    static EmergencyStatus getGroupRisk(int groupSize) {
+   public static EmergencyStatus getGroupRisk(int groupSize) {
         int position = 0;
-        for (; position < riskTable.length; position++) {
-            if (riskTable[position] >= groupSize) {
+        for (; position < EmergencyStatus.getSizeStatuses(); position++) {
+            if (EmergencyStatus.values()[position].getRiskGrade() >= groupSize) {
                 return EmergencyStatus.values()[position];
             }
         }

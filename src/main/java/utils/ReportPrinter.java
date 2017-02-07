@@ -3,8 +3,7 @@ package utils;
 
 import WorkingZone.MonitoredField;
 import java.util.Map;
-
-import static WorkingZone.utils.PrinterOfMonitoredField.print;
+import WorkingZone.utils.MonitoredFieldPrinter;
 
 public class ReportPrinter {
     private MonitoredField field;
@@ -20,7 +19,7 @@ public class ReportPrinter {
         report.append(title());
         report.append(splitLine());
         report.append(splitLine());
-        report.append(print(field));
+        report.append(MonitoredFieldPrinter.print(field));
         report.append(splitLine());
         report.append(riskGroupsTitle());
         report.append(splitLine());

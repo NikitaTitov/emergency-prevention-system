@@ -2,17 +2,17 @@ package WorkingZone;
 
 
 public class MonitoredField implements Cloneable {
-    private StateForCell[][] monitoredField;
+    private CellState[][] monitoredField;
 
     public MonitoredField(int height, int width) {
-        monitoredField = new StateForCell[height][width];
+        monitoredField = new CellState[height][width];
     }
 
-    public void setCellValue(int row, int column, StateForCell cellValue) {
+    public void setCellValue(int row, int column, CellState cellValue) {
         monitoredField[row][column] = cellValue;
     }
 
-    public StateForCell getStatusOfCell(int row, int column) {
+    public CellState getCellState(int row, int column) {
         return monitoredField[row][column];
     }
 

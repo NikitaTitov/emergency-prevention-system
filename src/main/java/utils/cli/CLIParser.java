@@ -11,21 +11,21 @@ public class CLIParser {
     public CLIParser() {
         options = new Options();
 
-        Option leftOperand = Option.builder("h")
+        Option height = Option.builder("h")
                 .required(true)
                 .longOpt("height")
                 .hasArg()
                 .desc("Number of field's rows")
                 .build();
 
-        Option rightOperand = Option.builder("w")
+        Option width = Option.builder("w")
                 .required(true)
                 .longOpt("width")
                 .hasArg()
                 .desc("Number of field's columns")
                 .build();
 
-        Option operation = Option.builder("f")
+        Option factor = Option.builder("f")
                 .required(true)
                 .longOpt("factor")
                 .hasArg()
@@ -38,18 +38,18 @@ public class CLIParser {
                 .desc("If you need the help")
                 .build();
 
-        options.addOption(leftOperand);
-        options.addOption(rightOperand);
-        options.addOption(operation);
+        options.addOption(height);
+        options.addOption(width);
+        options.addOption(factor);
         options.addOption(help);
     }
 
     public IncomeData parse(String[] args) throws ParseException {
         if (args.length == 0) {
-            printHelp();
+            throw new ParseException("No arguments");
         }
         line = parser.parse(options, args);
-        int height =  Integer.parseInt(line.getOptionValue("height"));
+        int height = Integer.parseInt(line.getOptionValue("height"));
         int width = Integer.parseInt(line.getOptionValue("width"));
         double fillFactor = Double.parseDouble(line.getOptionValue("factor"));
 

@@ -2,11 +2,11 @@ package WorkingZone.utils;
 
 
 import WorkingZone.MonitoredField;
-import WorkingZone.StateForCell;
+import WorkingZone.CellState;
 
-public class PrinterOfMonitoredField {
+public class MonitoredFieldPrinter {
 
-    private PrinterOfMonitoredField(){
+    private MonitoredFieldPrinter(){
 
     }
 
@@ -21,7 +21,7 @@ public class PrinterOfMonitoredField {
         for (int row = 0; row < field.getHeightOfField(); row++) {
             result.append(row + "\t");
             for (int column = 0; column < field.getWidthOfField(); column++) {
-                if (field.getStatusOfCell(row,column) == StateForCell.FILL)
+                if (field.getCellState(row, column) == CellState.FILL)
                     result.append("|X|");
                 else
                     result.append(" - ");

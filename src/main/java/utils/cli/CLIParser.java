@@ -7,6 +7,7 @@ public class CLIParser {
     private Options options;
     private CommandLineParser parser = new PosixParser();
     private CommandLine line;
+    private HelpPrinter printer;
 
     public CLIParser() {
         options = new Options();
@@ -54,7 +55,7 @@ public class CLIParser {
         double fillFactor = Double.parseDouble(line.getOptionValue("factor"));
 
         if (!checkIncomeArgs(height, width, fillFactor)) {
-            printHelp();
+            printer.printHelp(options);
         }
         return new IncomeData(height, width, fillFactor);
     }
@@ -66,10 +67,5 @@ public class CLIParser {
         return false;
     }
 
-    public void printHelp() {
-        HelpFormatter helpFormatter = new HelpFormatter();
-        String header = "Something wrong with your input, check input values:\n\n";
-        String footer = "";
-        helpFormatter.printHelp("Help:", header, options, footer, true);
-    }
+
 }

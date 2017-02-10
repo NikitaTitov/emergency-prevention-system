@@ -1,13 +1,15 @@
 package utils;
 
 
-import WorkingZone.MonitoredField;
+import workingzone.MonitoredField;
 import java.util.Map;
-import WorkingZone.utils.MonitoredFieldPrinter;
+import workingzone.utils.MonitoredFieldPrinter;
 
 public class ReportPrinter {
     private MonitoredField field;
+    private MonitoredFieldPrinter printer;
     private Map<EmergencyStatus, Integer> groups;
+
 
     public ReportPrinter(MonitoredField field, Map<EmergencyStatus, Integer> groups) {
         this.field = field;
@@ -19,7 +21,7 @@ public class ReportPrinter {
         report.append(title());
         report.append(splitLine());
         report.append(splitLine());
-        report.append(MonitoredFieldPrinter.print(field));
+        report.append(printer.print(field));
         report.append(splitLine());
         report.append(riskGroupsTitle());
         report.append(splitLine());

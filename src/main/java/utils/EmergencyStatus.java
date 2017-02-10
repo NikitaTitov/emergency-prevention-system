@@ -2,23 +2,19 @@ package utils;
 
 
 public enum EmergencyStatus {
-    NONE(0),
-    MINOR(2),
-    NORMAL(4),
-    MAJOR(7),
-    CRITICAL(13);
+    NONE(2),
+    MINOR(4),
+    NORMAL(7),
+    MAJOR(13),
+    CRITICAL(Integer.MAX_VALUE);
 
-    EmergencyStatus(int riskGrade) {
-        this.riskGrade = riskGrade;
+    EmergencyStatus(int upBound) {
+        this.upBound = upBound;
     }
 
-    private int riskGrade;
+    private int upBound;
 
-    public int getRiskGrade() {
-        return riskGrade;
-    }
-
-    public static int getSizeStatuses() {
-        return EmergencyStatus.values().length;
+    public int getUpBound() {
+        return upBound;
     }
 }

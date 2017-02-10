@@ -1,8 +1,8 @@
 package utils;
 
 
-import WorkingZone.MonitoredField;
-import WorkingZone.CellState;
+import workingzone.MonitoredField;
+import workingzone.CellState;
 
 public class RandomFiller {
 
